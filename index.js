@@ -1,9 +1,3 @@
-/**
- * This example demonstrates setting up a webook, and receiving
- * updates in your express app
- */
-/* eslint-disable no-console */
-
 const TOKEN = process.env.tgkey;
 const url = 'https://tgtr.herokuapp.com';
 const port = process.env.PORT;
@@ -33,13 +27,11 @@ app.listen(port, () => {
 });
 
 // Just to ping!
-bot.on('message', async msg => {
-  const t = await translate(msg.text, {to: 'en'}).then(res => {
+bot.on('message', msg => {
+  console.log(msg, t)
+  return translate(msg.text, { to: 'en' }).then(res => {
     console.log(res.text);
     console.log(res.from.language.iso);
-    return res.text
-  }).catch(err => {
-  console.log(msg, t)
-  bot.sendMessage(msg.chat.id, t);
-});
-
+    return bot.sendMessage(msg.chat.id, res.text);
+  }).catch(err => console.log('err', err));
+})
