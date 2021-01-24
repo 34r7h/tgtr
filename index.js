@@ -32,6 +32,6 @@ bot.on('message', msg => {
   return translate(msg.text, { to: 'en' }).then(res => {
     console.log(res.text);
     console.log(res.from.language.iso);
-    return bot.sendMessage(msg.chat.id, res.text);
+    return bot.sendMessage(msg.chat.id, `${ msg.chat.username }\n${ msg.text }\n${ res.text }`);
   }).catch(err => console.log('err', err));
 })
