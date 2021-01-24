@@ -35,7 +35,7 @@ bot.on('message', msg => {
     return res1
   }).then((en)=>{
     return translate(msg.text, {to: 'ru'}).then(res2 => {
-      return bot.sendMessage('534859505', `${msg.chat.title || 'private'} | ${ msg.from.username } (${en.from.language.iso})\n${ msg.text }\n\nen: ${ en.text } \nру: ${ res2.text } `);
+      return bot.sendMessage('bot1503882189', `${msg.chat.title || 'private'} | ${ msg.from.username } (${en.from.language.iso})\n${ msg.text }\n\nen: ${ en.text } \nру: ${ res2.text } `);
     })
   }).catch(err => console.log('err', err));
-})
+}) //'534859505'
