@@ -28,7 +28,7 @@ app.listen(port, () => {
 
 // Just to ping!
 bot.on('message', msg => {
-  console.log(msg, t)
+  console.log(msg)
   return translate(msg.text, { to: 'en' }).then(res => {
     console.log(res.text);
     console.log(res.from.language.iso);
