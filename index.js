@@ -5,7 +5,7 @@
 /* eslint-disable no-console */
 
 const TOKEN = process.env.tgkey;
-const url = 'https://tgtr.herokuapp.com/';
+const url = 'https://tgtr.herokuapp.com';
 const port = process.env.PORT;
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
@@ -29,7 +29,7 @@ app.post(`/bot${TOKEN}`, (req, res) => {
 
 // Start Express Server
 app.listen(port, () => {
-  console.log(`Express server is listening on ${port}`);
+  console.log(`Express server is listening on ${port}, token ${TOKEN}, endpoint ${url}`);
 });
 
 // Just to ping!
