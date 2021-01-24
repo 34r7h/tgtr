@@ -31,9 +31,13 @@ app.listen(port, () => {
 // Just to ping!
 bot.on('message', msg => {
   console.log(msg)
-  return translate(msg.text, { to: 'en' }).then(res => {
-    console.log(res.text);
-    console.log(res.from.language.iso);
-    return bot.sendMessage('534859505', `[${msg.chat.title || 'private'}] ${ msg.from.username } says,\n${ msg.text }\n\n[ ${ res.text } ]`);
+  return translate(msg.text, { to: 'en' }).then(res1 => {
+    console.log(res1.text);
+    console.log(res1.from.language.iso);
+    return res1.text
+  }).then((en)=>{
+    return translate(msg.text, {to: 'ru'}).then(res2 => {
+      return bot.sendMessage('534859505', `[${msg.chat.title || 'private'}] ${ msg.from.username } says,\n${ msg.text }\n\nEN: [ ${ en } ] \n\nRU: [ ${ res2.text } ]`);
+    })
   }).catch(err => console.log('err', err));
 })
