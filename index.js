@@ -9,7 +9,7 @@ const url = 'https://tgtr.herokuapp.com';
 const port = process.env.PORT;
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
-
+const translate = require('google-translate-api');
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
 
@@ -34,6 +34,15 @@ app.listen(port, () => {
 
 // Just to ping!
 bot.on('message', msg => {
+console.log(msg)
+translate('Ik spreek Engels', {to: 'en'}).then(res => {
+    console.log(res.text);
+    //=> I speak English
+    console.log(res.from.language.iso);
+    //=> nl
+}).catch(err => {
+    console.error(err);
+});
   bot.sendMessage(msg.chat.id, 'I am alive!');
 });
 
