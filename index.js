@@ -9,7 +9,7 @@ const url = 'https://tgtr.herokuapp.com';
 const port = process.env.PORT;
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
-const translate = require('google-translate-api');
+const translate = require('@vitalets/google-translate-api');
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
 
