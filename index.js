@@ -34,10 +34,10 @@ bot.on('message', msg => {
   return translate(msg.text, { to: 'en' }).then(res1 => {
     console.log(res1.text);
     console.log(res1.from.language.iso);
-    return res1.text
+    return res1
   }).then((en)=>{
     return translate(msg.text, {to: 'ru'}).then(res2 => {
-      return bot.sendMessage('534859505', `[${msg.chat.title || 'private'}] ${ msg.from.username } says,\n${res1.from.language.iso.toUpperCase()}: [${ msg.text }]\nEN: [ ${ en } ] \nRU: [ ${ res2.text } ]`);
+      return bot.sendMessage('534859505', `[${msg.chat.title || 'private'}] ${ msg.from.username } says,\n${en.from.language.iso.toUpperCase()}: [${ msg.text }]\nEN: [ ${ en.text } ] \nRU: [ ${ res2.text } ]`);
     })
   }).catch(err => console.log('err', err));
 })
