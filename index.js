@@ -23,15 +23,6 @@ app.use(express.json());
 
 // We are receiving updates at the route below!
 app.post(`/bot${TOKEN}`, (req, res) => {
-  translate('Ik spreek Engels', {to: 'en'}).then(res => {
-    console.log(res.text);
-    //=> I speak English
-    console.log(res.from.language.iso);
-    //=> nl
-  }).catch(err => {
-      console.error(err);
-  });
-
   bot.processUpdate(req.body);
   res.sendStatus(200);
 });
@@ -42,8 +33,13 @@ app.listen(port, () => {
 });
 
 // Just to ping!
-bot.on('message', msg => {
-  console.log(msg, typeof translate)
-  bot.sendMessage(msg.chat.id, 'I am alive!');
+bot.on('message', async msg => {
+  const t = await translate(msg.text, {to: 'en'}).then(res => {
+    console.log(res.text);
+    console.log(res.from.language.iso);
+    return res.text
+  }).catch(err => {
+  console.log(msg, t)
+  bot.sendMessage(msg.chat.id, t);
 });
 
