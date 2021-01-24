@@ -37,7 +37,7 @@ bot.on('message', msg => {
     return res1.text
   }).then((en)=>{
     return translate(msg.text, {to: 'ru'}).then(res2 => {
-      return bot.sendMessage('534859505', `[${msg.chat.title || 'private'}] ${ msg.from.username } says,\n${ msg.text }\n\nEN: [ ${ en } ] \n\nRU: [ ${ res2.text } ]`);
+      return bot.sendMessage('@swgoh34r7hbot', `[${msg.chat.title || 'private'}] ${ msg.from.username } says,\n${ msg.text }\n\nEN: [ ${ en } ] \n\nRU: [ ${ res2.text } ]`);
     })
   }).catch(err => console.log('err', err));
 })
