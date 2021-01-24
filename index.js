@@ -28,10 +28,10 @@ app.listen(port, () => {
 
 // Just to ping!
 bot.on('message', msg => {
-  console.log(msg)
+  console.log(msg, t)
   return translate(msg.text, { to: 'en' }).then(res => {
     console.log(res.text);
     console.log(res.from.language.iso);
-    return bot.sendMessage(res.text, msg);
+    return bot.sendMessage(msg.chat.id, res.text);
   }).catch(err => console.log('err', err));
 })
