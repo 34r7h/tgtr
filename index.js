@@ -39,7 +39,7 @@ bot.on('message', msg => {
     return res1
   }).then((en) => {
     return translate(text, { to: 'ru' }).then(res2 => {
-      return bot.sendMessage((BLACKLIST.includes(msg.chat.id) && !msg.text.includes('/t')) ? '534859505' : msg.chat.id, `${msg.chat.title || 'private'} | ${msg.from.username} (${en.from.language.iso})\n${text}\n\nen: ${en.text} \nру: ${res2.text} `);
+      return bot.sendMessage((BLACKLIST && BLACKLIST.includes(msg.chat.id) && !msg.text.includes('/t')) ? '534859505' : msg.chat.id, `${msg.chat.title || 'private'} | ${msg.from.username} (${en.from.language.iso})\n${text}\n\nen: ${en.text} \nру: ${res2.text} `);
     })
   }).catch(err => console.log('err', err));
 }) 
