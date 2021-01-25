@@ -33,7 +33,7 @@ bot.on('message', msg => {
   console.log(msg)
   if (msg.text.includes('/help')) return bot.sendMessage(msg.chat.id, 'Type "/t text to translate"');
   if (msg.text.includes('/t@swgoh34r7hbot') ) return bot.sendMessage(msg.chat.id, 'Type "/t followed by text to translate"'); 
-  let text = msg.text.includes('/t') ? msg.text.split('/t')[0] : msg.text;
+  let text = msg.text.includes('/t') ? msg.text.splice(0,3): msg.text;
   console.log(text);
   return translate(text, { to: 'en' }).then(res1 => {
     return res1
