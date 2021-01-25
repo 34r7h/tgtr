@@ -5,7 +5,9 @@ https://github.com/34r7h/google-translate-api
 
 The world is large and you've been missing out on many ideas! Run this telegram bot to translate without leaving the chat.
 
-## Set up instructions for heroku
+``` npm install tgtr ```
+
+## Set up instructions for Heroku (create app first)
 
   1. Use @botfather to create a bot, choose bot name, get key - assign key to process.env.tgkey
     a. extra credit, set up commands with botfather (/t, /help)
