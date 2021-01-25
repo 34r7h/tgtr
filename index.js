@@ -2,8 +2,8 @@
 
 const TOKEN = process.env.tgkey;
 const ADMIN = process.env.admin;
-const url = process.env.url;
-const port = process.env.PORT;
+const URL = process.env.url;
+const PORT = process.env.PORT;
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const translate = require('@34r7h/google-translate-api');
@@ -11,7 +11,7 @@ const translate = require('@34r7h/google-translate-api');
 const bot = new TelegramBot(TOKEN);
 
 // This informs the Telegram servers of the new webhook.
-bot.setWebHook(`${url}/bot${TOKEN}`);
+bot.setWebHook(`${URL}/bot${TOKEN}`);
 
 const app = express();
 
@@ -26,7 +26,7 @@ app.post(`/bot${TOKEN}`, (req, res) => {
 
 // Start Express Server
 app.listen(port, () => {
-  console.log(`Express server is listening on ${port}, token ${TOKEN}, endpoint ${url}`);
+  console.log(`Express server is listening on ${PORT}, token ${TOKEN}, endpoint ${URL}`);
 });
 
 // Just to ping!
