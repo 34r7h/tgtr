@@ -1,6 +1,7 @@
 // TODO translate attachments and other forms of media. Get group name from chat id. allow other target languages.
 
 const TOKEN = process.env.tgkey;
+const BLACKLIST = process.env.tgid;
 const url = 'https://tgtr.herokuapp.com';
 const port = process.env.PORT;
 const TelegramBot = require('node-telegram-bot-api');
@@ -30,18 +31,15 @@ app.listen(port, () => {
 
 // Just to ping!
 bot.on('message', msg => {
-  console.log(msg)
   if (!msg.text) return
   if (msg.text.includes('/help')) return bot.sendMessage(msg.chat.id, 'Type "/t text to translate"');
   if (msg.text.includes('/t@swgoh34r7hbot') ) return bot.sendMessage(msg.chat.id, 'Type "/t followed by text to translate"'); 
   let text = msg.text.includes('/t') ? msg.text.replace('/t','') : msg.text;
-  console.log(text);
   return translate(text, { to: 'en' }).then(res1 => {
     return res1
   }).then((en) => {
-    console.log(en);
     return translate(text, { to: 'ru' }).then(res2 => {
-      return bot.sendMessage((msg.chat.id === -1001400572784 && !msg.text.includes('/t')) ? '534859505' : msg.chat.id, `${msg.chat.title || 'private'} | ${msg.from.username} (${en.from.language.iso})\n${text}\n\nen: ${en.text} \nру: ${res2.text} `);
+      return bot.sendMessage((BLACKLIST.includes(msg.chat.id) && !msg.text.includes('/t')) ? '534859505' : msg.chat.id, `${msg.chat.title || 'private'} | ${msg.from.username} (${en.from.language.iso})\n${text}\n\nen: ${en.text} \nру: ${res2.text} `);
     })
   }).catch(err => console.log('err', err));
 }) 
