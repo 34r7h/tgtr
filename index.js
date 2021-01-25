@@ -38,6 +38,7 @@ bot.on('message', msg => {
   return translate(text, { to: 'en' }).then(res1 => {
     return res1
   }).then((en) => {
+    console.log(en);
     return translate(text, { to: 'ru' }).then(res2 => {
       return bot.sendMessage((msg.chat.id === '1400572784' && !msg.text.includes('/t')) ? '534859505' : msg.chat.id, `${msg.chat.title || 'private'} | ${msg.from.username} (${en.from.language.iso})\n${text}\n\nen: ${en.text} \nру: ${res2.text} `);
     })
