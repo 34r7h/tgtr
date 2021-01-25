@@ -31,6 +31,7 @@ app.listen(port, () => {
 // Just to ping!
 bot.on('message', msg => {
   console.log(msg)
+  if (!msg.text) return
   if (msg.text.includes('/help')) return bot.sendMessage(msg.chat.id, 'Type "/t text to translate"');
   if (msg.text.includes('/t@swgoh34r7hbot') ) return bot.sendMessage(msg.chat.id, 'Type "/t followed by text to translate"'); 
   let text = msg.text.includes('/t') ? msg.text.replace('/t','') : msg.text;
