@@ -1,9 +1,8 @@
 // TODO translate attachments and other forms of media. Get group name from chat id. allow other target languages.
 
 const TOKEN = process.env.tgkey;
-const BLACKLIST = process.env.tgid;
 const ADMIN = process.env.admin;
-const url = 'https://tgtr.herokuapp.com';
+const url = process.env.url;
 const port = process.env.PORT;
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
