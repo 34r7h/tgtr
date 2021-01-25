@@ -31,11 +31,12 @@ app.listen(port, () => {
 // Just to ping!
 bot.on('message', msg => {
   console.log(msg)
-  return translate(msg.text, { to: 'en' }).then(res1 => {
+  let text = msg.text.includes('/t@swgoh34r7hbot') ? msg.text.split('/t@swgoh34r7hbot')[1] : msg.text.includes('/t') ? msg.text.split('/t')[1] : msg.text;
+  return translate(text, { to: 'en' }).then(res1 => {
     return res1
   }).then((en)=>{
-    return translate(msg.text, {to: 'ru'}).then(res2 => {
-      return bot.sendMessage( msg.chat.id === '1400572784' ? '534859505' :  msg.chat.id, `${msg.chat.title || 'private'} | ${ msg.from.username } (${en.from.language.iso})\n${ msg.text }\n\nen: ${ en.text } \nру: ${ res2.text } `);
+    return translate(text, {to: 'ru'}).then(res2 => {
+      return bot.sendMessage( (msg.chat.id === '1400572784' && !msg.text.includes('/t')) ? '534859505' :  msg.chat.id, `${msg.chat.title || 'private'} | ${ msg.from.username } (${en.from.language.iso})\n${ text }\n\nen: ${ en.text } \nру: ${ res2.text } `);
     })
   }).catch(err => console.log('err', err));
 }) 
