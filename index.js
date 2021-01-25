@@ -2,6 +2,7 @@
 
 const TOKEN = process.env.tgkey;
 const BLACKLIST = process.env.tgid;
+const ADMIN = process.env.admin;
 const url = 'https://tgtr.herokuapp.com';
 const port = process.env.PORT;
 const TelegramBot = require('node-telegram-bot-api');
@@ -39,7 +40,7 @@ bot.on('message', msg => {
     return res1
   }).then((en) => {
     return translate(text, { to: 'ru' }).then(res2 => {
-      return bot.sendMessage((BLACKLIST && BLACKLIST.includes(msg.chat.id) && !msg.text.includes('/t')) ? '534859505' : msg.chat.id, `${msg.chat.title || 'private'} | ${msg.from.username} (${en.from.language.iso})\n${text}\n\nen: ${en.text} \nру: ${res2.text} `);
+      return bot.sendMessage((BLACKLIST && BLACKLIST.includes(msg.chat.id) && !msg.text.includes('/t')) ? ADMIN : msg.chat.id, `${msg.chat.title || 'private'} | ${msg.from.username} (${en.from.language.iso})\n${text}\n\nen: ${en.text} \nру: ${res2.text} `);
     })
   }).catch(err => console.log('err', err));
 }) 
