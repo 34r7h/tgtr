@@ -33,7 +33,7 @@ bot.on('message', msg => {
   console.log(msg)
   if (msg.text.includes('/help')) return bot.sendMessage(msg.chat.id, 'Type "/t text to translate")';
   if (msg.text.includes('/t@swgoh34r7hbot') ) return bot.sendMessage(msg.chat.id, 'Telegram error. Type "/t text to translate")'; 
-  let text = msg.text.includes('/t') ? msg.text.split('/t')[1] : msg.text;
+  let text = msg.text.includes('/t') ? msg.text.split('/t')[0] : msg.text;
   return translate(text, { to: 'en' }).then(res1 => {
     return res1
   }).then((en) => {
