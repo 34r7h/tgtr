@@ -33,13 +33,13 @@ app.listen(PORT, () => {
 bot.on('message', msg => {
   if (!msg.text) return
   if (msg.text.includes('/help')) return bot.sendMessage(msg.chat.id, 'Type "/t text to translate"');
-  if (msg.text.includes('/t@') ) return bot.sendMessage(msg.chat.id, 'Type "/t followed by text to translate"'); 
-  let text = msg.text.includes('/t') ? msg.text.replace('/t','') : msg.text;
+  if (msg.text.includes('/t@') || msg.text.includes('/т@') ) return bot.sendMessage(msg.chat.id, 'Type "/t followed by text to translate"'); 
+  let text = (msg.text.includes('/t') || msg.text.includes('/т@')) ? msg.text.replace('/t','').replace('/т', '') : msg.text;
   return translate(text, { to: 'en' }).then(res1 => {
     return res1
   }).then((en) => {
     return translate(text, { to: 'ru' }).then(res2 => {
-      return bot.sendMessage((!msg.text.includes('/t')) ? ADMIN : msg.chat.id, `${msg.chat.title || 'private'} | ${msg.from.username} (${en.from.language.iso})\n${text}\n\nen: ${en.text} \nру: ${res2.text} `);
+      return bot.sendMessage((!msg.text.includes('/t') && !msg.text.includes('/т@')) ? ADMIN : msg.chat.id, `${msg.chat.title || 'private'} | ${msg.from.username} (${en.from.language.iso})\n${text}\n\nen: ${en.text} \nру: ${res2.text} `);
     })
   }).catch(err => console.log('err', err));
 }) 
