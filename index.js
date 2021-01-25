@@ -25,7 +25,7 @@ app.post(`/bot${TOKEN}`, (req, res) => {
 });
 
 // Start Express Server
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`Express server is listening on ${PORT}, token ${TOKEN}, endpoint ${URL}`);
 });
 
