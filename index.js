@@ -6,7 +6,7 @@ const URL = process.env.url;
 const PORT = process.env.PORT;
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
-const translate = require('google-translate-api');
+const translate = require('@34r7h/google-translate-api');
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
 
