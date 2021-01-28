@@ -32,7 +32,7 @@ app.listen(PORT, () => {
 // Just to ping!
 bot.on('message', msg => {
   if (!msg.text) return
-  if (msg.text.includes('/help')) return bot.sendMessage(msg.chat.id, 'This is a simple translator bot. Type "/t " then text to be translated into English and Russian."');
+  if (msg.text.includes('/help')) return bot.sendMessage(msg.chat.id, 'This is a simple translator bot. Type "/t " then text from another language to be translated into English and Russian."');
   if (msg.text.includes('/t@') || msg.text.includes('/т@') ) return bot.sendMessage(msg.chat.id, 'Type "/t followed by text to translate"'); 
   let text = (msg.text.indexOf('/t') === 0 || msg.text.includes('/т@')) ? msg.text.replace('/t','').replace('/т', '') : msg.text;
   return translate(text, { to: 'en' }).then(res1 => {
